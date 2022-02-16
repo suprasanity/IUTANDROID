@@ -1,9 +1,11 @@
 package com.example.pizzeria;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,12 +23,11 @@ private Button boutonFromage;
     public static HashMap<String, Integer> nbCommande = new HashMap<String, Integer>();
     public static HashMap<String, Integer> lesPrix = new HashMap<String, Integer>();
     public final static String CLE_SAUVEGARDE_RESULTAT = "CLE_SAUVEGARDE_RESULTAT";
-
+    public  TextView tableT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         boutonReset=findViewById(R.id.buttonReset);
         boutonFromage=findViewById(R.id.buttonFromage);
         boutonNapo=findViewById(R.id.buttonNapo);
@@ -36,6 +37,7 @@ private Button boutonFromage;
         boutonHawa=findViewById(R.id.buttonHawai);
         boutonPana=findViewById(R.id.buttonPana);
         boutonTira=findViewById(R.id.buttonGlace);
+        tableT=findViewById(R.id.textView);
         initPrix();
         resetText();
         boutonNapo.setOnClickListener(this);
@@ -47,6 +49,8 @@ private Button boutonFromage;
         boutonMonta.setOnClickListener(this);
         boutonTira.setOnClickListener(this);
         boutonReset.setOnClickListener(this);
+        Intent intent = getIntent();
+        String table = intent.getStringExtra("table");
 
 
         if (savedInstanceState != null) {
