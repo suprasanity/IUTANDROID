@@ -139,38 +139,54 @@ private Button boutonFromage;
         if (v.getId() == R.id.buttonFromage) {
             nbCommande.put("Fromage",nbCommande.get("Fromage")+1);
             boutonFromage.setText(lesPrix.get("Fromage")+"euro"+ "  Fromage :"+nbCommande.get("Fromage"));
-            b1= new background(table+"fromage");
+            System.out.println(table);
+            b1= new background("0"+table+"fromage");
             b1.execute();
 
         }
         if (v.getId() == R.id.buttonNapo) {
             nbCommande.put("Napo",nbCommande.get("Napo")+1);
             boutonNapo.setText(lesPrix.get("Napo")+"euro"+"  Napo :"+nbCommande.get("Napo"));
+            b1= new background("0"+table+"Napo");
+            b1.execute();
         }
         if (v.getId() == R.id.buttonRoyal) {
             nbCommande.put("Royal",nbCommande.get("Royal")+1);
             boutonRoyal.setText(lesPrix.get("Royal")+"euro"+ "  Royal :"+nbCommande.get("Royal"));
+            b1= new background("0"+table+"tasseur");
+            b1.execute();
         }
         if (v.getId() == R.id.buttonHawai) {
             nbCommande.put("Hawa",nbCommande.get("Hawa")+1);
             boutonHawa.setText(lesPrix.get("Hawa")+"euro"+ "  Hawa :"+nbCommande.get("Hawa"));
+            b1= new background(table+"Hawa");
+            b1.execute();
+
         }
         if (v.getId() == R.id.buttonMonta) {
             nbCommande.put("Monta",nbCommande.get("Monta")+1);
             boutonMonta.setText(lesPrix.get("Monta")+"euro"+ "  Monta :"+nbCommande.get("Monta"));
+            b1= new background("0"+table+"Monta");
+            b1.execute();
         }
         if (v.getId() == R.id.buttonRaclette) {
             nbCommande.put("Raclette",nbCommande.get("Raclette")+1);
             boutonRaclette.setText(lesPrix.get("Raclette")+"euro"+ "  Raclette :"+nbCommande.get("Raclette"));
+            b1= new background("0"+table+"Raclette");
+            b1.execute();
         }
         if (v.getId() == R.id.buttonGlace) {
             nbCommande.put("Tira",nbCommande.get("Tira")+1);
             boutonTira.setText(lesPrix.get("Tira")+"euro"+ "  Tira :"+nbCommande.get("Tira"));
+            b1= new background("0"+table+"Tira");
+            b1.execute();
 
         }
         if (v.getId() == R.id.buttonPana) {
             nbCommande.put("Pana",nbCommande.get("Pana")+1);
             boutonPana.setText(lesPrix.get("Pana")+"euro"+ "  Pana :"+nbCommande.get("Pana"));
+            b1= new background("0"+table+"Pana");
+            b1.execute();
         }
         if (v.getId() == R.id.buttonReset) {
            initQuantite();
@@ -202,8 +218,11 @@ private Button boutonFromage;
                 clientSocket = new Socket("chadok.info",9874);
                 out = new PrintWriter(clientSocket.getOutputStream());
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out.println("04montagnarde");
+                out.println(message);
+                out.flush();
                 System.out.println("test");
+                out.close();
+                clientSocket.close();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -211,3 +230,4 @@ private Button boutonFromage;
             return null;
         }
     }}
+

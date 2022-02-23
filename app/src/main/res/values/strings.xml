@@ -2,10 +2,10 @@
     <string name="app_name">Pizzeria</string>
     <string-array name="table">
         <item>Déroulez moi !</item>
-        <item>Table 2 place n°1</item>
-        <item>Table 2 place n°2</item>
-        <item>Table 5 place n°3</item>
-        <item>Table 4 place n°4</item>
-        <item>Table 6 place n°5</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>69</item>
     </string-array>
 </resources>
