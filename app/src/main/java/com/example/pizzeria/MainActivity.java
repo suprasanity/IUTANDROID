@@ -1,14 +1,20 @@
 package com.example.pizzeria;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 private Button boutonNapo;
@@ -20,9 +26,11 @@ private Button boutonFromage;
     private Button boutonPana;
     private Button boutonTira;
     private Button boutonReset;
+    private background b1;
     public static HashMap<String, Integer> nbCommande = new HashMap<String, Integer>();
     public static HashMap<String, Integer> lesPrix = new HashMap<String, Integer>();
     public final static String CLE_SAUVEGARDE_RESULTAT = "CLE_SAUVEGARDE_RESULTAT";
+    private String table;
     public  TextView tableT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +45,8 @@ private Button boutonFromage;
         boutonHawa=findViewById(R.id.buttonHawai);
         boutonPana=findViewById(R.id.buttonPana);
         boutonTira=findViewById(R.id.buttonGlace);
-        tableT=findViewById(R.id.textView);
+        tableT=findViewById(R.id.labelTable);
+
         initPrix();
         resetText();
         boutonNapo.setOnClickListener(this);
@@ -50,8 +59,14 @@ private Button boutonFromage;
         boutonTira.setOnClickListener(this);
         boutonReset.setOnClickListener(this);
         Intent intent = getIntent();
-        String table = intent.getStringExtra("table");
 
+
+
+        if (intent!=null || intent.hasExtra("edittext")){ // vérifie qu'une valeur est associée à la clé “edittext”
+            this.table=intent.getStringExtra("table");
+           tableT.setText(table);
+
+        }
 
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("CLE_SAUVEGARDE_RESULTAT")){
@@ -80,6 +95,7 @@ private Button boutonFromage;
         lesPrix.put("Raclette",69);
         lesPrix.put("Tira",2);
         lesPrix.put("Pana",3);
+
     }
 
     public void resetData(){
@@ -123,6 +139,9 @@ private Button boutonFromage;
         if (v.getId() == R.id.buttonFromage) {
             nbCommande.put("Fromage",nbCommande.get("Fromage")+1);
             boutonFromage.setText(lesPrix.get("Fromage")+"euro"+ "  Fromage :"+nbCommande.get("Fromage"));
+            b1= new background(table+"fromage");
+            b1.execute();
+
         }
         if (v.getId() == R.id.buttonNapo) {
             nbCommande.put("Napo",nbCommande.get("Napo")+1);
@@ -165,4 +184,30 @@ private Button boutonFromage;
 
 
     }
-}
+    public class  background extends AsyncTask<String, Void, String> {
+        private  Socket clientSocket;
+        private String message;
+        private  BufferedReader in;
+        private  PrintWriter out;
+
+        public background(String message){
+        this.message=message;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            try {
+
+                clientSocket = new Socket("chadok.info",9874);
+                out = new PrintWriter(clientSocket.getOutputStream());
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                out.println("04montagnarde");
+                System.out.println("test");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }}
