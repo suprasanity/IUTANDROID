@@ -6,104 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/buttonNapo"
-        android:layout_width="0dp"
+    <FrameLayout
+        android:name="com.example.pizzeria.pizza"
         android:layout_height="0dp"
-        android:text="NAPOLITAINE"
-        app:layout_constraintBottom_toTopOf="@id/buttonRoyal"
+        android:layout_width="0dp"
+        android:id="@+id/fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelTable" />
+        app:layout_constraintTop_toBottomOf="@+id/labelTable"/>
 
-    <Button
-        android:id="@+id/buttonRoyal"
+    <FrameLayout
+        android:id="@+id/fragmentPersonnalisation"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="ROYALE"
-        app:layout_constraintBottom_toTopOf="@+id/buttonFromage"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonNapo" />
-
-    <Button
-        android:id="@+id/buttonFromage"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="4Fromage"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMonta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRoyal" />
-
-
-    <Button
-        android:id="@+id/buttonMonta"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Montagnarde"
-        app:layout_constraintBottom_toTopOf="@+id/buttonRaclette"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFromage" />
-
-
-    <Button
-        android:id="@+id/buttonRaclette"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Raclette"
-        app:layout_constraintBottom_toTopOf="@+id/buttonHawai"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMonta" />
-
-    <Button
-        android:id="@+id/buttonHawai"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="hawai"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPana"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRaclette" />
-
-    <Button
-        android:id="@+id/buttonPana"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Pana"
-        app:layout_constraintEnd_toStartOf="@id/buttonGlace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHawai"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <Button
-        android:id="@+id/buttonGlace"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Glace"
-        app:layout_constraintEnd_toStartOf="@id/buttonReset"
-        app:layout_constraintStart_toEndOf="@id/buttonPana"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHawai"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-    <Button
-        android:id="@+id/buttonReset"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Reset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/buttonGlace"
-        app:layout_constraintTop_toBottomOf="@+id/buttonHawai"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/labelTable"/>
+    />
 
     <TextView
         android:id="@+id/labelTable"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="411dp"
+        android:layout_height="55dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/buttonNapo"
+        app:layout_constraintBottom_toTopOf="@+id/fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.pizzeria;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,10 +16,12 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.HashMap;
 
+import static java.lang.Integer.parseInt;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-private Button boutonNapo;
-private Button boutonFromage;
+
+public class MainActivity extends AppCompatActivity {
+    private Button boutonNapo;
+    private Button boutonFromage;
     private Button boutonRoyal;
     private Button boutonMonta;
     private Button boutonRaclette;
@@ -26,44 +29,36 @@ private Button boutonFromage;
     private Button boutonPana;
     private Button boutonTira;
     private Button boutonReset;
-    private background b1;
+    private Button boutonPersonnalise;
+    public static pizza fragPizza;
+    public static ingredient fragIngredient;
     public static HashMap<String, Integer> nbCommande = new HashMap<String, Integer>();
     public static HashMap<String, Integer> lesPrix = new HashMap<String, Integer>();
     public final static String CLE_SAUVEGARDE_RESULTAT = "CLE_SAUVEGARDE_RESULTAT";
-    private String table;
-    public  TextView tableT;
+    public static String table;
+    public static TextView tableT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        boutonReset=findViewById(R.id.buttonReset);
-        boutonFromage=findViewById(R.id.buttonFromage);
-        boutonNapo=findViewById(R.id.buttonNapo);
-        boutonRoyal=findViewById(R.id.buttonRoyal);
-        boutonMonta=findViewById(R.id.buttonMonta);
-        boutonRaclette=findViewById(R.id.buttonRaclette);
-        boutonHawa=findViewById(R.id.buttonHawai);
-        boutonPana=findViewById(R.id.buttonPana);
-        boutonTira=findViewById(R.id.buttonGlace);
-        tableT=findViewById(R.id.labelTable);
+        pizza frag = new pizza();
+        this.fragPizza= frag;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment, frag);
+        transaction.commit();
 
-        initPrix();
-        resetText();
-        boutonNapo.setOnClickListener(this);
-        boutonFromage.setOnClickListener(this);
-        boutonRoyal.setOnClickListener(this);
-        boutonRaclette.setOnClickListener(this);
-        boutonHawa.setOnClickListener(this);
-        boutonPana.setOnClickListener(this);
-        boutonMonta.setOnClickListener(this);
-        boutonTira.setOnClickListener(this);
-        boutonReset.setOnClickListener(this);
+        setContentView(R.layout.activity_main);
+
+        tableT=findViewById(R.id.labelTable);
         Intent intent = getIntent();
 
 
 
         if (intent!=null || intent.hasExtra("edittext")){ // vérifie qu'une valeur est associée à la clé “edittext”
             this.table=intent.getStringExtra("table");
+            if(parseInt(MainActivity.table)<10 ){
+                this.table="0"+this.table;
+                System.out.println("la table s'écrit avec un 0 mnt");
+            }
            tableT.setText(table);
 
         }
@@ -76,27 +71,18 @@ private Button boutonFromage;
                 }
 
             }
+            System.out.println("reset data");
             resetData();
 
 
         }else{
-            initQuantite();
+            pizza.initQuantite();
         }
 
 
 
     }
-    public void initPrix(){
-        lesPrix.put("Fromage",12);
-        lesPrix.put("Napo",13);
-        lesPrix.put("Royal",11);
-        lesPrix.put("Hawa",8);
-        lesPrix.put("Monta",66);
-        lesPrix.put("Raclette",69);
-        lesPrix.put("Tira",2);
-        lesPrix.put("Pana",3);
 
-    }
 
     public void resetData(){
             boutonFromage.setText(lesPrix.get("Fromage")+"euro"+ "  Fromage :"+nbCommande.get("Fromage"));
@@ -109,125 +95,14 @@ private Button boutonFromage;
             boutonPana.setText(lesPrix.get("Pana")+"euro"+ "  Pana :"+nbCommande.get("Pana"));
 
     }
-    public void initQuantite(){
-        nbCommande.put("Fromage",0);
-        nbCommande.put("Napo",0);
-        nbCommande.put("Royal",0);
-        nbCommande.put("Hawa",0);
-        nbCommande.put("Monta",0);
-        nbCommande.put("Raclette",0);
-        nbCommande.put("Tira",0);
-        nbCommande.put("Pana",0);
-    }
-    public void resetText(){
-        boutonFromage.setText(lesPrix.get("Fromage")+"euro"+ "   Fromage 0" );
-        boutonNapo.setText(lesPrix.get("Napo")+"euro"+ "   Napo 0");
-        boutonRoyal.setText(lesPrix.get("Royal")+"euro"+ "   Royal 0");
-        boutonHawa.setText(lesPrix.get("Hawa")+"euro"+ "   Hawa 0");
-        boutonMonta.setText(lesPrix.get("Monta")+"euro"+ "   Monta 0");
-        boutonRaclette.setText(lesPrix.get("Raclette")+"euro"+ "   Raclette 0");
-        boutonTira.setText(lesPrix.get("Tira")+"euro"+ "   Tira 0");
-        boutonPana.setText(lesPrix.get("Pana")+"euro"+"   Pana 0");
-    }
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable(CLE_SAUVEGARDE_RESULTAT, nbCommande);
     }
-    public void onClick(View v) {
-        if (v.getId() == R.id.buttonFromage) {
-            nbCommande.put("Fromage",nbCommande.get("Fromage")+1);
-            boutonFromage.setText(lesPrix.get("Fromage")+"euro"+ "  Fromage :"+nbCommande.get("Fromage"));
-            System.out.println(table);
-            b1= new background("0"+table+"fromage");
-            b1.execute();
 
-        }
-        if (v.getId() == R.id.buttonNapo) {
-            nbCommande.put("Napo",nbCommande.get("Napo")+1);
-            boutonNapo.setText(lesPrix.get("Napo")+"euro"+"  Napo :"+nbCommande.get("Napo"));
-            b1= new background("0"+table+"Napo");
-            b1.execute();
-        }
-        if (v.getId() == R.id.buttonRoyal) {
-            nbCommande.put("Royal",nbCommande.get("Royal")+1);
-            boutonRoyal.setText(lesPrix.get("Royal")+"euro"+ "  Royal :"+nbCommande.get("Royal"));
-            b1= new background("0"+table+"tasseur");
-            b1.execute();
-        }
-        if (v.getId() == R.id.buttonHawai) {
-            nbCommande.put("Hawa",nbCommande.get("Hawa")+1);
-            boutonHawa.setText(lesPrix.get("Hawa")+"euro"+ "  Hawa :"+nbCommande.get("Hawa"));
-            b1= new background(table+"Hawa");
-            b1.execute();
-
-        }
-        if (v.getId() == R.id.buttonMonta) {
-            nbCommande.put("Monta",nbCommande.get("Monta")+1);
-            boutonMonta.setText(lesPrix.get("Monta")+"euro"+ "  Monta :"+nbCommande.get("Monta"));
-            b1= new background("0"+table+"Monta");
-            b1.execute();
-        }
-        if (v.getId() == R.id.buttonRaclette) {
-            nbCommande.put("Raclette",nbCommande.get("Raclette")+1);
-            boutonRaclette.setText(lesPrix.get("Raclette")+"euro"+ "  Raclette :"+nbCommande.get("Raclette"));
-            b1= new background("0"+table+"Raclette");
-            b1.execute();
-        }
-        if (v.getId() == R.id.buttonGlace) {
-            nbCommande.put("Tira",nbCommande.get("Tira")+1);
-            boutonTira.setText(lesPrix.get("Tira")+"euro"+ "  Tira :"+nbCommande.get("Tira"));
-            b1= new background("0"+table+"Tira");
-            b1.execute();
-
-        }
-        if (v.getId() == R.id.buttonPana) {
-            nbCommande.put("Pana",nbCommande.get("Pana")+1);
-            boutonPana.setText(lesPrix.get("Pana")+"euro"+ "  Pana :"+nbCommande.get("Pana"));
-            b1= new background("0"+table+"Pana");
-            b1.execute();
-        }
-        if (v.getId() == R.id.buttonReset) {
-           initQuantite();
-           resetText();
-
-
-
-        }
-
-
-
-
-    }
-    public class  background extends AsyncTask<String, Void, String> {
-        private  Socket clientSocket;
-        private String message;
-        private  BufferedReader in;
-        private  PrintWriter out;
-
-        public background(String message){
-        this.message=message;
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-
-            try {
-
-                clientSocket = new Socket("chadok.info",9874);
-                out = new PrintWriter(clientSocket.getOutputStream());
-                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                out.println(message);
-                out.flush();
-                System.out.println("test");
-                out.close();
-                clientSocket.close();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }}
+  }
 

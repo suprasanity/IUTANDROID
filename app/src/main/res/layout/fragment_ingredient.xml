@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/Mozarella"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Mozarella"
+        app:layout_constraintBottom_toTopOf="@id/jambon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/jambon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="jambon"
+        app:layout_constraintBottom_toTopOf="@+id/olives"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Mozarella" />
+
+    <Button
+        android:id="@+id/olives"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Olives"
+        app:layout_constraintBottom_toTopOf="@+id/anchois"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jambon" />
+
+
+    <Button
+        android:id="@+id/anchois"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Anchois"
+        app:layout_constraintBottom_toTopOf="@+id/artichaut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/olives" />
+
+
+    <Button
+        android:id="@+id/artichaut"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Artichaut"
+        app:layout_constraintBottom_toTopOf="@+id/buttonchorizo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/anchois" />
+
+    <Button
+        android:id="@+id/buttonchorizo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="chorizo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonchampi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/artichaut" />
+
+    <Button
+        android:id="@+id/buttonchampi"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="champi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonchorizo"
+        app:layout_constraintBottom_toTopOf="@id/buttoncapres"/>
+
+    <Button
+        android:id="@+id/buttoncapres"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="capres"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonchampi"
+        app:layout_constraintBottom_toTopOf="@id/reset"/>
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Confirmer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttoncapres"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>
