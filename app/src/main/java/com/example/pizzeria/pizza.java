@@ -14,21 +14,21 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.text.BreakIterator;
 
 import static java.lang.Integer.parseInt;
 
 public class pizza extends Fragment implements View.OnClickListener{
-
-    public Button boutonNapo;
-    public Button boutonFromage;
-    public Button boutonRoyal;
-    public Button boutonMonta;
-    public Button boutonRaclette;
-    public Button boutonHawa;
-    public Button boutonPana;
-    public Button boutonTira;
-    public Button boutonReset;
-    public Button boutonPersonalise;
+    public static Button boutonNapo;
+    public static Button boutonFromage;
+    public static Button boutonRoyal;
+    public static Button boutonMonta;
+    public static Button boutonRaclette;
+    public  static Button boutonHawa;
+    public static  Button boutonPana;
+    public static Button boutonTira;
+    public static Button boutonReset;
+    public static Button boutonPersonalise;
     public pizza.background b1;
 
 
@@ -78,6 +78,7 @@ public class pizza extends Fragment implements View.OnClickListener{
 
         return v;
     }
+
 @Override
     public void onClick(View v) {
 
@@ -249,7 +250,7 @@ public class pizza extends Fragment implements View.OnClickListener{
             System.out.println("la donné"+donne);
 
             System.out.println("démarage de la backtask");
-            clientSocket = new Socket("chadok.info",9874);
+            clientSocket = new Socket("127.0.0.1",4000);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream());
             System.out.println("envoie du message "+donne);
@@ -263,7 +264,7 @@ public class pizza extends Fragment implements View.OnClickListener{
                     if(reception==1)
                     {
                         System.out.println("changementttttttttttttttttttttttttttttttttttttttttttttttttttttttttt ");
-                        MainActivity.tableT.setText(msg+"/n");
+                        MainActivity.tableT.setText(msg);
 
                     }
                     reception++;

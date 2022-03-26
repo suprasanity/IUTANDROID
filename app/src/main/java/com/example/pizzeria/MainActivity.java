@@ -20,16 +20,6 @@ import static java.lang.Integer.parseInt;
 
 
 public class MainActivity extends AppCompatActivity {
-    private Button boutonNapo;
-    private Button boutonFromage;
-    private Button boutonRoyal;
-    private Button boutonMonta;
-    private Button boutonRaclette;
-    private Button boutonHawa;
-    private Button boutonPana;
-    private Button boutonTira;
-    private Button boutonReset;
-    private Button boutonPersonnalise;
     public static pizza fragPizza;
     public static ingredient fragIngredient;
     public static HashMap<String, Integer> nbCommande = new HashMap<String, Integer>();
@@ -83,18 +73,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void resetData(){
-            boutonFromage.setText(lesPrix.get("Fromage")+"euro"+ "  Fromage :"+nbCommande.get("Fromage"));
-            boutonNapo.setText(lesPrix.get("Napo")+"euro"+ "  Napo :"+nbCommande.get("Napo"));
-            boutonRoyal.setText(lesPrix.get("Royal")+"euro"+"  Royal :"+nbCommande.get("Royal"));
-            boutonHawa.setText(lesPrix.get("Hawa")+"euro"+ "  Hawa :"+nbCommande.get("Hawa"));
-            boutonMonta.setText(lesPrix.get("Monta")+"euro"+ "  Monta :"+nbCommande.get("Monta"));
-            boutonRaclette.setText(lesPrix.get("Raclette")+"euro"+ "  Raclette :"+nbCommande.get("Raclette"));
-            boutonTira.setText(lesPrix.get("Tira")+"euro"+ "  Tira :"+nbCommande.get("Tira"));
-            boutonPana.setText(lesPrix.get("Pana")+"euro"+ "  Pana :"+nbCommande.get("Pana"));
+       pizza.boutonFromage.setText(lesPrix.get("Fromage")+"euro"+ "  Fromage :"+nbCommande.get("Fromage"));
+        pizza. boutonNapo.setText(lesPrix.get("Napo")+"euro"+ "  Napo :"+nbCommande.get("Napo"));
+        pizza.boutonRoyal.setText(lesPrix.get("Royal")+"euro"+"  Royal :"+nbCommande.get("Royal"));
+        pizza.boutonHawa.setText(lesPrix.get("Hawa")+"euro"+ "  Hawa :"+nbCommande.get("Hawa"));
+        pizza.boutonMonta.setText(lesPrix.get("Monta")+"euro"+ "  Monta :"+nbCommande.get("Monta"));
+        pizza.boutonRaclette.setText(lesPrix.get("Raclette")+"euro"+ "  Raclette :"+nbCommande.get("Raclette"));
+        pizza. boutonTira.setText(lesPrix.get("Tira")+"euro"+ "  Tira :"+nbCommande.get("Tira"));
+        pizza. boutonPana.setText(lesPrix.get("Pana")+"euro"+ "  Pana :"+nbCommande.get("Pana"));
 
     }
+
 
 
 

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.Spinner;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class MainActivity2 extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -17,6 +18,7 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main2);
          dropdown = findViewById(R.id.spinner);
 
@@ -24,6 +26,17 @@ public class MainActivity2 extends AppCompatActivity implements AdapterView.OnIt
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(myAdapter);
         dropdown.setOnItemSelectedListener(this);
+        Thread t = new Thread() {
+            public void run() {
+                try {
+                    serveur s1 = new serveur(4000);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        t.start();
+
 
 
 
